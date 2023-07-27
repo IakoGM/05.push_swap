@@ -6,14 +6,13 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 13:37:35 by jakgonza          #+#    #+#              #
-#    Updated: 2023/07/26 16:22:14 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/07/27 21:07:49 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SCRS = main.c \
-	 
+SRCS = main.c 
 
 OBJS = $(SRCS:.c=.o)
 
@@ -29,8 +28,8 @@ $(LIBFT):
 %.o: %.c
 	gcc $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	gcc $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	gcc $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

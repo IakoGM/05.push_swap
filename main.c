@@ -6,31 +6,54 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/07/26 18:16:20 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:36:12 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
-void	ft_parsedata(int argc, char **argv)
+int	ft_hasspace(char const *arg)
 {
-	int i;
+	while (*arg)
+	{
+		if (*arg == 32)
+			return (1);
+		arg++;
+	}
+	return (0);
+}
 
+void	ft_parsedata(int argc, char const **argv)
+{
+	int	i;
+	char **str;
+	
 	i = 1;
 	while (argc > i)
 	{
 		if (ft_hasspace(argv[i]))
 		{
-			ft_split(argv[i]);
+			printf("Yes, has espace.\n");
+			str = ft_split(argv[i], 32); // WARNING: - devuelve un char** maloqueado
+			while (**str)
+			{
+				printf("%s", *str);		 // FIXME: - NO imprime cada uno de los strings
+				**str++;
+			}
 		}
+		else
+			printf("NO, it doesn't\n");
 		i++;
 	}
 }
 
 int	main(int argc, char const *argv[])
 {
-	if (argc == 1) // Si NO hay argumentos devuelve el control al usuario
+	if (argc == 5) // Si NO hay argumentos devuelve el control al usuario
 		return (0);
 	ft_parsedata(argc, &*argv);
+	if (argv[1])
+		printf("%s", argv[1]);
 	return (0);
 }
