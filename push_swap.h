@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/07/27 20:51:32 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:34:06 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-// typedef struct m_list
-// {
-// 	int				index;
-// 	int				content;
-// 	struct m_list	*next;
-// }	m_list;
+typedef struct s_node
+{
+	int				index;
+	int				content;
+	struct s_node	*next;
+}					t_node;
 
 #endif

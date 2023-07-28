@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/07/27 21:36:12 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:09:56 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int	ft_hasspace(char const *arg)
 
 void	ft_parsedata(int argc, char const **argv)
 {
-	int	i;
-	char **str;
-	
+	int		i;
+	char	**str;
+	// t_node	*lst;
+
 	i = 1;
 	while (argc > i)
 	{
@@ -36,10 +37,17 @@ void	ft_parsedata(int argc, char const **argv)
 		{
 			printf("Yes, has espace.\n");
 			str = ft_split(argv[i], 32); // WARNING: - devuelve un char** maloqueado
-			while (**str)
+			while (*str)                 // Si tiene **str da segfault
 			{
-				printf("%s", *str);		 // FIXME: - NO imprime cada uno de los strings
-				**str++;
+				if (!ft_isdigit((int) *str))
+				{
+					free(str);
+					write(2, "Todos los datos introducidos han de ser numeros enteros.\n", 57);
+					exit (2);
+				}
+				// lst->content = *str;
+				printf("El argumento contiene -> %s\n", *str);
+				str++;
 			}
 		}
 		else
@@ -53,7 +61,7 @@ int	main(int argc, char const *argv[])
 	if (argc == 5) // Si NO hay argumentos devuelve el control al usuario
 		return (0);
 	ft_parsedata(argc, &*argv);
-	if (argv[1])
-		printf("%s", argv[1]);
+	// if (argv[1])
+	// 	printf("%s", argv[1]);
 	return (0);
 }
