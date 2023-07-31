@@ -15,7 +15,7 @@ int ft_atoi(const char *nptr)
 		num = num * 10 + *nptr - '0';
 		nptr++;
 	}
-	if (*nptr <= '0' && *nptr >= '9')
+	if (!(*nptr >= '0' && *nptr <= '9') && *nptr != '\0')
 		return (-1);
 	return (num);
 }

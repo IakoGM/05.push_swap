@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 15:24:43 by jakgonza          #+#    #+#              #
-#    Updated: 2023/07/28 17:52:55 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/07/31 12:34:19 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,20 +46,17 @@ SRCS = ft_isalpha.c\
 	   ft_putstr_fd.c\
 	   ft_putendl_fd.c\
 	   ft_putnbr_fd.c\
-
-SRCS_BONUS = ft_lstnew_bonus.c\
-			 ft_lstadd_front_bonus.c\
-			 ft_lstsize_bonus.c\
-			 ft_lstlast_bonus.c\
-			 ft_lstadd_back_bonus.c\
-			 ft_lstdelone_bonus.c\
-			 ft_lstclear_bonus.c\
-			 ft_lstiter_bonus.c\
-			 ft_lstmap_bonus.c\
+	   ft_lstnew_bonus.c\
+	   ft_lstadd_front_bonus.c\
+	   ft_lstsize_bonus.c\
+	   ft_lstlast_bonus.c\
+	   ft_lstadd_back_bonus.c\
+	   ft_lstdelone_bonus.c\
+	   ft_lstclear_bonus.c\
+	   ft_lstiter_bonus.c\
+	   ft_lstmap_bonus.c\
 
 OBJS = $(SRCS:.c=.o)
-
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 CFLAGS = -Wall -Werror -Wextra
 
@@ -71,11 +68,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $@ $^
 
-bonus: $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS)
 	@echo "Object files removed"
 
 fclean: clean
@@ -84,4 +78,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean bonus fclean re
+.PHONY: all clean fclean re
