@@ -5,12 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/01 15:24:43 by jakgonza          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/08/02 18:40:22 by jakgonza         ###   ########.fr        #
-=======
-#    Updated: 2023/08/02 18:48:10 by jakgonza         ###   ########.fr        #
->>>>>>> 05eff5f (renamed all list methods)
+#    Created: 2023/08/02 19:14:05 by jakgonza          #+#    #+#              #
+#    Updated: 2023/08/02 19:14:24 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,11 +46,8 @@ SRCS = ft_isalpha.c\
 	   ft_putstr_fd.c\
 	   ft_putendl_fd.c\
 	   ft_putnbr_fd.c\
-<<<<<<< HEAD
-	   ft_lstnew_bonus.c\
-=======
 	   ft_lstnew.c\
->>>>>>> 05eff5f (renamed all list methods)
+	   ft_lstnew.c\
 	   ft_lstadd_front.c\
 	   ft_lstsize.c\
 	   ft_lstlast.c\
