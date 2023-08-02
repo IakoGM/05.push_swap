@@ -6,17 +6,19 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 13:37:35 by jakgonza          #+#    #+#              #
-#    Updated: 2023/07/31 12:19:37 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/08/02 19:46:04 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRCS = main.c 
+SRCS = 	main.c\
+		ft_free.c\
+		ft_error.c\
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIBFT = libft/libft.a
 
@@ -43,4 +45,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean bonus fclean re
+.PHONY: all clean fclean re

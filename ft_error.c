@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 13:23:54 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/02 19:43:18 by jakgonza         ###   ########.fr       */
+/*   Created: 2023/08/02 19:38:27 by jakgonza          #+#    #+#             */
+/*   Updated: 2023/08/02 19:42:17 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_free(char **ptr)
+void	ft_error(char *ptr)
 {
-	while (ptr != NULL)
-	{
-		free(*ptr);
-		ptr++;
-	}
-	
+	if (!ptr)
+		exit(2);
+	ft_free(ptr);
+	write(2, "Error\n", 6);
+	exit(2);	
 }
