@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/07/31 13:28:22 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:49:18 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ typedef struct s_node
 }					t_node;
 
 void	ft_free(char **ptr);
+void	ft_error(char **ptr);
 
 #endif
