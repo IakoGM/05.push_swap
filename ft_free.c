@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 13:23:54 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/02 19:43:18 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:32:01 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_free(char **ptr)
 {
-	while (ptr != NULL)
+	while (*ptr)
 	{
 		free(*ptr);
 		ptr++;
 	}
-	
+	free(ptr);
 }
