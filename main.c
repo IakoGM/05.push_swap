@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/08 13:37:12 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:04:31 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**ft_insert_data(char const **argv)
 	return (str);
 }
 
-int *ft_fill_numbers(char **str, int *cont)
+int *ft_fill_numbers(char **str, int *size)
 {
 	int	*numbers;
 	int i;
@@ -71,14 +71,7 @@ int *ft_fill_numbers(char **str, int *cont)
 		numbers[i] = ft_atoi(str[i]);
 		i++;
 	}
-	*cont = i;
-	// Eliminar hasta return
-	int j = 0;
-	while (i > j)
-	{
-		printf("Numbers %d -> %d\n", j, numbers[j]);
-		j++;
-	}
+	*size = i;
 	return (numbers);
 }
 
@@ -90,12 +83,13 @@ char	**ft_return_data(int *array, int *cont)
 
 	i = 0;
 	len = *cont;
-	res = (char **) malloc ((len + 1) * sizeof(char));
+	res = (char **) malloc ((len + 1) * sizeof(char *));
 	while (i < len)
 	{
 		res[i] = ft_itoa(array[i]);
 		i++;
 	}
+	res[i] = NULL;
 	return (res);
 }
 
@@ -108,9 +102,9 @@ int	ft_compare(char **str, char **nums)
 	j = 0;
 	while (str[i] && nums[i])
 	{
-		while (str[i][j] && nums[i][j])
+		while (str[i][j] || nums[i][j])
 		{
-			if (str[i][j] != nums[i][j])
+			if ((str[i][j] != nums[i][j]) || !str[i][j] || !nums[i][j])
 				return (0);
 			j++;
 		}
@@ -135,21 +129,35 @@ void	ft_checkdata(int argc, char const **argv)
 		str = ft_split(argv[1], 32);
 	else
 		str = ft_insert_data(&*argv);
-	// FIXME:
-		// - Al hacer el itoa parece que los numeros no se guardan bien
-		// - Chequear tambien el atoi por si acaso
 	numbers = ft_fill_numbers(str, cont);
+	// while (i < *cont)
+	// {
+	// 	printf("Numbers int* %d es: %d\n", i, numbers[i]);
+	// 	i++;
+	// }
 	nums = ft_return_data(numbers, cont);
+	// i = 0;
+	// while (nums[i])
+	// {
+	// 	printf("Nums char* %d es: %s\n", i, nums[i]);
+	// 	i++;
+	// }
 	if (ft_compare(str, nums))
-	// TODO:
-		// - liberar toda la memoria
-	free(str);
+		printf("Las cadenas son iguales");
+	else
+	{
+		ft_free(nums);
+		free(numbers);	
+		ft_error(str);
+	}
 }
 
 int	main(int argc, char const *argv[])
 {
 	if (argc == 1)
 		return (0);
+	// TODO:
+		// - Segmentar los argumentos recibidos entre comillas y los que no
 	ft_checkdata(argc, argv); // Comprobar si argv y &*argv funcionan igual
 	return (0);
 }
