@@ -6,12 +6,13 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/07 18:31:27 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:37:12 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+#include <string.h>
 
 // int	ft_hasspace(char const *arg)
 // {
@@ -22,40 +23,6 @@
 // 		arg++;
 // 	}
 // 	return (0);
-// }
-
-// void	ft_parsedata(int argc, char const **argv)
-// {
-// 	int		i;
-// 	char	**str;
-
-// 	i = 1;
-// 	str = NULL;
-// 	while (argc > i)
-// 	{
-// 		if (ft_hasspace(argv[i]))
-// 		{
-// 			str = ft_split(argv[i], 32); // WARNING: - devuelve un char** maloqueado
-// 			while (*str)                 // Si tiene **str da segfault
-// 			{
-// 				if (ft_atoi(*str) == -1)
-// 					ft_error(str);
-// 				str++;
-// 			}
-// 		}
-// 		else 
-// 		{
-// 			if (ft_atoi(argv[i]) == -1)
-// 			{
-// 				if (str != NULL)
-// 					ft_free(str);
-// 				write(2, "Error\n", 6);
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	if (str != NULL)
-// 		ft_free(str);
 // }
 
 int	ft_double_strlen(char **str)
@@ -92,36 +59,90 @@ char	**ft_insert_data(char const **argv)
 	return (str);
 }
 
-void	ft_checkdata(int argc, char const **argv)
+int *ft_fill_numbers(char **str, int *cont)
 {
-	char	**str;
-	int		*numbers;
-	int		i;
+	int	*numbers;
+	int i;
 
 	i = 0;
-	str = NULL;
-	if (argc == 2)
-		str = ft_split(argv[1], 32);
-	else
-		str = ft_insert_data(&*argv);
 	numbers = (int *) malloc (ft_double_strlen(str) * sizeof(int));
 	while (str[i])
 	{
 		numbers[i] = ft_atoi(str[i]);
 		i++;
 	}
-	// La i es 3
+	*cont = i;
+	// Eliminar hasta return
 	int j = 0;
 	while (i > j)
 	{
 		printf("Numbers %d -> %d\n", j, numbers[j]);
 		j++;
 	}
-	
-	// atoi
-	// itoa
-	// strcmp
+	return (numbers);
+}
 
+char	**ft_return_data(int *array, int *cont)
+{
+	char	**res;
+	int		len;
+	int 	i;
+
+	i = 0;
+	len = *cont;
+	res = (char **) malloc ((len + 1) * sizeof(char));
+	while (i < len)
+	{
+		res[i] = ft_itoa(array[i]);
+		i++;
+	}
+	return (res);
+}
+
+int	ft_compare(char **str, char **nums)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i] && nums[i])
+	{
+		while (str[i][j] && nums[i][j])
+		{
+			if (str[i][j] != nums[i][j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	ft_checkdata(int argc, char const **argv)
+{
+	char	**str;
+	char	**nums;
+	int		*numbers;
+	int		cont[1];
+	int		i;
+
+	i = 0;
+	str = NULL;
+	nums = NULL;
+	cont[0] = 0;
+	if (argc == 2)
+		str = ft_split(argv[1], 32);
+	else
+		str = ft_insert_data(&*argv);
+	// FIXME:
+		// - Al hacer el itoa parece que los numeros no se guardan bien
+		// - Chequear tambien el atoi por si acaso
+	numbers = ft_fill_numbers(str, cont);
+	nums = ft_return_data(numbers, cont);
+	if (ft_compare(str, nums))
+	// TODO:
+		// - liberar toda la memoria
 	free(str);
 }
 
@@ -130,6 +151,5 @@ int	main(int argc, char const *argv[])
 	if (argc == 1)
 		return (0);
 	ft_checkdata(argc, argv); // Comprobar si argv y &*argv funcionan igual
-	// ft_parsedata(argc, &*argv);
 	return (0);
 }
