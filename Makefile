@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 13:37:35 by jakgonza          #+#    #+#              #
-#    Updated: 2023/08/02 19:46:04 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/08/10 16:11:22 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = push_swap
 SRCS = 	main.c\
 		ft_free.c\
 		ft_error.c\
+		lists.c\
 
 OBJS = $(SRCS:.c=.o)
 

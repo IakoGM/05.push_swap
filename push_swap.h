@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/09 13:06:11 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:04:02 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+# include <stdio.h>
+# include <string.h>
+
 typedef struct s_stack
 {
 	int				index;
@@ -25,6 +28,14 @@ typedef struct s_stack
 }					t_stack;
 
 void	ft_free(char **ptr);
-void	ft_error(char **ptr);
+void	ft_error_free_dp(char **ptr);
+void	ft_error(void);
+
+
+// ------- LISTAS ------- //
+void	ft_lstadd_front(t_stack **lst, t_stack *new);
+// void	ft_lstadd_back(t_stack **lst, t_stack *new)
+t_stack	*ft_lstnew(int *content);
+
 
 #endif
