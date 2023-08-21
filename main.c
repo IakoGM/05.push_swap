@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/10 16:24:59 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:40:13 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ int	*ft_checkdata(int argc, char const **argv, int *cont, int *numbers)
 {
 	char	**str;
 	char	**nums_str;
-	// int		*numbers;
 
 	str = NULL;
 	nums_str = NULL;
@@ -138,10 +137,8 @@ int	*ft_checkdata(int argc, char const **argv, int *cont, int *numbers)
 	nums_str = ft_return_data(numbers, cont);
 	if (ft_compare(str, nums_str))
 	{
-		printf("Las cadenas son iguales\n");
 		if (!ft_check_duplicates(numbers, cont))
 		{
-			printf("No hay numeros duplicados.\n");
 			ft_free(str);
 			ft_free(nums_str);
 			return (numbers);
@@ -153,7 +150,7 @@ int	*ft_checkdata(int argc, char const **argv, int *cont, int *numbers)
 	return (numbers);
 }
 
-int	ft_check_empty(char const **argv)
+static int	ft_check_empty(char const **argv)
 {
 	int	i;
 
@@ -167,7 +164,7 @@ int	ft_check_empty(char const **argv)
 	return (0);
 }
 
-int	ft_only_spaces(char const **argv)
+static int	ft_only_spaces(char const **argv)
 {
 	int	i;
 	int	j;
@@ -185,56 +182,62 @@ int	ft_only_spaces(char const **argv)
 	return (0);
 }
 
-t_stack	*ft_fill_stack(t_stack *stack_a, int *numbers, int *cont)
+void	ft_fill_stack(Node **stack_a, int *numbers, int *cont)
 {
 	int		i;
-	t_stack *tmp;
+	Node	*aux;
 
-	i = 1;
-	stack_a = ft_lstnew(&numbers[0]);
-	tmp = stack_a;
-	printf("La direccion de memoria de tmp es: %p\n", tmp);
-	printf("La direccion de memoria de stack_a es: %p\n", stack_a);
-	stack_a = stack_a->next;
+	i = 0;
 	while (i < *cont)
 	{
-		stack_a = ft_lstnew(&numbers[i]);
-		printf("El contenido de stack_a en numbers[%d] es: %d\n", i, stack_a->content);
-		stack_a = stack_a->next;
+		aux = ft_lstnew(&numbers[i]);
+		ft_lstadd_back(stack_a, aux);
 		i++;
 	}
-	while (tmp->content)
+	free(numbers);
+}
+
+void	ft_print_stack(Node *stack)
+{
+	Node	*curr;
+	
+	curr = stack;
+	while (curr)
 	{
-		printf("El contenido de stack_a a traves de tmp[%d] es: %d", i, tmp->content);
-		tmp = tmp->next;
-		i++;
+		printf("El contenido del stack es: %d\n", curr->content);
+		curr = curr->next;
 	}
-	return (stack_a);
+}
+
+void	ft_push_swap(Node **stack_a, Node **stack_b)
+{
+	int	size;
+
+	size = ft_stack_size(*stack_a);
+	printf("El stack_a tiene %d elementos\n", size);
+	size = ft_stack_size(*stack_b);
+	printf("El stack_b tiene %d elementos\n", size);
 }
 
 int	main(int argc, char const *argv[])
 {
-	t_stack	*stack_a;
-	// t_stack	*stack_b;
+	Node	*stack_a;
+	Node	*stack_b;
 	int	*numbers;
 	int	cont[1];
 
 	cont[0] = 0;
 	numbers = NULL;
 	stack_a = NULL;
+	stack_b = NULL;
 	if (argc == 1)
 		return (0);
 	if (ft_check_empty(argv) || ft_only_spaces(argv))
 		ft_error();
 	numbers = ft_checkdata(argc, argv, cont, numbers);
-	int	i = 0;
-	while (i < *cont)
-	{
-		printf("Numbers en el main contiene: %d\n", numbers[i]);
-		i++;
-	}
-	printf("Su direccion de memoria es: %p\n", numbers);
-	stack_a = ft_fill_stack(stack_a, numbers, cont);
-	free(numbers);
+	ft_fill_stack(&stack_a, numbers, cont);
+	ft_print_stack(stack_a);
+	ft_push_swap(&stack_a, &stack_b);
+	ft_clear_stack(&stack_a);
 	return (0);
 }
