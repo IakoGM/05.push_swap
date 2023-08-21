@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 13:37:35 by jakgonza          #+#    #+#              #
-#    Updated: 2023/08/10 16:11:22 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/08/21 14:42:24 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRCS = 	main.c\
 		ft_free.c\
 		ft_error.c\
 		lists.c\
+		movements01.c\
+		movements02.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/21 12:40:13 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:15:15 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,14 +209,35 @@ void	ft_print_stack(Node *stack)
 	}
 }
 
+int	ft_stack_sorted(Node *stack)
+{
+	Node	*curr;
+
+	curr = stack;
+	while (curr->next)
+	{
+		if (curr->content > curr->next->content)
+			return (printf("El stack NO esta ordenado\n"), 0);
+		curr = curr->next;
+	}
+	return (printf("El stack SI esta ordenado\n"), 1);
+}
+
 void	ft_push_swap(Node **stack_a, Node **stack_b)
 {
 	int	size;
+	*stack_b = NULL;
 
 	size = ft_stack_size(*stack_a);
 	printf("El stack_a tiene %d elementos\n", size);
-	size = ft_stack_size(*stack_b);
-	printf("El stack_b tiene %d elementos\n", size);
+	if (ft_stack_sorted(*stack_a) && *stack_b == NULL)
+		return ;
+	// if (ft_stack_size(&stack_a) <= 3)
+	// 	// ...
+	// else if (ft_stack_size <= 5)
+	// 	// ...
+	// else
+	// 	// ...
 }
 
 int	main(int argc, char const *argv[])
@@ -239,5 +260,7 @@ int	main(int argc, char const *argv[])
 	ft_print_stack(stack_a);
 	ft_push_swap(&stack_a, &stack_b);
 	ft_clear_stack(&stack_a);
+	ft_clear_stack(&stack_b);
+	printf("Salida limpia!!\n");
 	return (0);
 }
