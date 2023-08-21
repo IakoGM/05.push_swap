@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/21 15:15:15 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:03:56 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,10 +230,12 @@ void	ft_push_swap(Node **stack_a, Node **stack_b)
 
 	size = ft_stack_size(*stack_a);
 	printf("El stack_a tiene %d elementos\n", size);
-	if (ft_stack_sorted(*stack_a) && *stack_b == NULL)
+	if (*stack_b == NULL && (ft_stack_sorted(*stack_a) || ft_stack_size(*stack_a) <= 1))
 		return ;
-	// if (ft_stack_size(&stack_a) <= 3)
-	// 	// ...
+	if (ft_stack_size(*stack_a) == 2 && *stack_a > (*stack_a)->next)
+			ft_swap(stack_a);
+	if (ft_stack_size(*stack_a) <= 3)
+		ft_sort_three(stack_a);
 	// else if (ft_stack_size <= 5)
 	// 	// ...
 	// else
@@ -259,6 +261,10 @@ int	main(int argc, char const *argv[])
 	ft_fill_stack(&stack_a, numbers, cont);
 	ft_print_stack(stack_a);
 	ft_push_swap(&stack_a, &stack_b);
+	printf("STACK A - Final\n");
+	ft_print_stack(stack_a);
+	printf("STACK B - Final\n");
+	ft_print_stack(stack_b);
 	ft_clear_stack(&stack_a);
 	ft_clear_stack(&stack_b);
 	printf("Salida limpia!!\n");
