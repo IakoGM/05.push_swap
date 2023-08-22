@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/21 18:03:56 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/22 07:46:30 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void	ft_push_swap(Node **stack_a, Node **stack_b)
 		return ;
 	if (ft_stack_size(*stack_a) == 2 && *stack_a > (*stack_a)->next)
 			ft_swap(stack_a);
-	if (ft_stack_size(*stack_a) <= 3)
+	if (ft_stack_size(*stack_a) == 3)
 		ft_sort_three(stack_a);
 	// else if (ft_stack_size <= 5)
 	// 	// ...
