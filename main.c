@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/22 07:46:30 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:59:02 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,13 +230,14 @@ void	ft_push_swap(Node **stack_a, Node **stack_b)
 
 	size = ft_stack_size(*stack_a);
 	printf("El stack_a tiene %d elementos\n", size);
-	if (*stack_b == NULL && (ft_stack_sorted(*stack_a) || ft_stack_size(*stack_a) <= 1))
+	if (*stack_b == NULL && (ft_stack_sorted(*stack_a) || size <= 1))
 		return ;
-	if (ft_stack_size(*stack_a) == 2 && *stack_a > (*stack_a)->next)
+	if (size == 2 && *stack_a > (*stack_a)->next)
 			ft_swap(stack_a);
-	if (ft_stack_size(*stack_a) == 3)
+	else if (size == 3)
 		ft_sort_three(stack_a);
-	// else if (ft_stack_size <= 5)
+	else if (size <= 5)
+		ft_sort_five(stack_a, stack_b);
 	// 	// ...
 	// else
 	// 	// ...

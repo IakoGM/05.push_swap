@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/21 23:08:37 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:59:28 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_reverse_rotate_rrr(Node **stack_a, Node **stack_b);
 
 // ------- ORDENAMIENTO ------- //
 void	ft_sort_three(Node **head);
+void	ft_sort_five(Node **stack_a, Node **stack_b);
 
 // ------- Funciones para eliminar ------- //
 void	ft_print_stack(Node *stack);
