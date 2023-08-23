@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/22 12:59:28 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:38:27 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct Node
 	struct Node		*next;
 }					Node;
 
+// ------- UTILS ------- //
 void	ft_free(char **ptr);
 void	ft_error_free_dp(char **ptr);
 void	ft_error(void);
@@ -40,20 +41,20 @@ Node	*ft_lstnew(int *content);
 void	ft_clear_stack(Node **head);
 int		ft_stack_size(Node *stack);
 
-
 // ------- MOVIMIENTOS ------- //
 void	ft_pa(Node **stack_a, Node **stack_b);
 void	ft_pb(Node **stack_a, Node **stack_b);
-void	ft_swap(Node **stack);
+void	ft_swap(Node **stack, char c);
 void	ft_swap_ss(Node **stack_a, Node **stack_b);
-void	ft_rotate(Node **head);
+void	ft_rotate(Node **head, char c);
 void	ft_rotate_rr(Node **stack_a, Node **stack_b);
-void	ft_reverse_rotate(Node **head);
+void	ft_reverse_rotate(Node **head, char c);
 void	ft_reverse_rotate_rrr(Node **stack_a, Node **stack_b);
 
 // ------- ORDENAMIENTO ------- //
 void	ft_sort_three(Node **head);
 void	ft_sort_five(Node **stack_a, Node **stack_b);
+void	ft_sort_radix(Node **stack_a, Node **stack_b);
 
 // ------- Funciones para eliminar ------- //
 void	ft_print_stack(Node *stack);

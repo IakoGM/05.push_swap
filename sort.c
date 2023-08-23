@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:17 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/22 14:03:55 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:39:29 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,28 @@ void	ft_sort_three(Node **head)
 	int	counter = 0;
 
 	ft_update(*head, &start, &middle, &end);
-	printf("Los elementos start %d, middle %d y end %d\n", start, middle, end);
 	while (!ft_stack_sorted(*head))
 	{
 		if (start > middle && start > end)
 		{
-			ft_rotate(head);
+			ft_rotate(head, 'a');
 			ft_update(*head, &start, &middle, &end);
 			counter++;
-			printf("Los elementos start %d, middle %d y end %d\n", start, middle, end);
 		}
 		else if ((start > middle || start < middle) && start < end)
 		{
-			ft_swap(head);
+			ft_swap(head, 'a');
 			ft_update(*head, &start, &middle, &end);
 			counter++;
-			printf("Los elementos start %d, middle %d y end %d\n", start, middle, end);
 		}
 		else if (start < middle && start > end)
 		{
-			ft_rotate(head);
+			ft_rotate(head, 'a');
 			ft_update(*head, &start, &middle, &end);
 			counter++;
-			printf("Los elementos start %d, middle %d y end %d\n", start, middle, end);
 		}
 	}
-	printf("El contador de movimentos es: %d\n", counter);
+	// printf("El contador de movimentos es: %d\n", counter);
 }
 
 void	ft_sort_five(Node **stack_a, Node **stack_b)
@@ -88,7 +84,7 @@ void	ft_sort_five(Node **stack_a, Node **stack_b)
 		min = ft_find_min(*stack_a);
 		while (min != (*stack_a)->content)
 		{
-			ft_rotate(stack_a);
+			ft_rotate(stack_a, 'a');
 			cont++;
 		}
 		ft_pb(stack_a, stack_b);
@@ -101,6 +97,11 @@ void	ft_sort_five(Node **stack_a, Node **stack_b)
 		ft_pa(stack_a, stack_b);
 		cont++;
 	}
-	
-	printf("El contador de movimentos es: %d\n", cont);
+	// printf("El contador de movimentos es: %d\n", cont);
+}
+
+void	ft_sort_radix(Node **stack_a, Node **stack_b)
+{
+	// TODO: Desarrollar el algoritmo radix para el ordenamiento
+	return ;
 }
