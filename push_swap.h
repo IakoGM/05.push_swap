@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/23 17:38:27 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:41:14 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_lstadd_back(Node **lst, Node *new);
 Node	*ft_lstnew(int *content);
 void	ft_clear_stack(Node **head);
 int		ft_stack_size(Node *stack);
+int		ft_find_last(Node *head);
 
 // ------- MOVIMIENTOS ------- //
 void	ft_pa(Node **stack_a, Node **stack_b);

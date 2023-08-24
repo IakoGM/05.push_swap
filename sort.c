@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:17 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/23 17:39:29 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:20:02 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,23 @@ int	ft_find_min(Node *head)
 	return (min);
 }
 
+int	ft_find_last(Node *head)
+{
+	int		num;
+	Node	*aux;
+
+	aux = head;
+	while (aux->next)
+		aux = aux->next;
+	num = aux->content;
+	return (num);
+}
+
 void	ft_sort_three(Node **head)
 {
 	int	start;
 	int	middle;
 	int	end;
-	int	counter = 0;
 
 	ft_update(*head, &start, &middle, &end);
 	while (!ft_stack_sorted(*head))
@@ -49,22 +60,18 @@ void	ft_sort_three(Node **head)
 		{
 			ft_rotate(head, 'a');
 			ft_update(*head, &start, &middle, &end);
-			counter++;
 		}
 		else if ((start > middle || start < middle) && start < end)
 		{
 			ft_swap(head, 'a');
 			ft_update(*head, &start, &middle, &end);
-			counter++;
 		}
 		else if (start < middle && start > end)
 		{
 			ft_rotate(head, 'a');
 			ft_update(*head, &start, &middle, &end);
-			counter++;
 		}
 	}
-	// printf("El contador de movimentos es: %d\n", counter);
 }
 
 void	ft_sort_five(Node **stack_a, Node **stack_b)
@@ -72,7 +79,6 @@ void	ft_sort_five(Node **stack_a, Node **stack_b)
 	int	size;
 	int	min;
 	int	i;
-	int	cont = 0;
 
 	size = ft_stack_size(*stack_a);
 	if (size == 4)
@@ -82,26 +88,14 @@ void	ft_sort_five(Node **stack_a, Node **stack_b)
 	while (i != 2)
 	{
 		min = ft_find_min(*stack_a);
+		if (ft_find_last(*stack_a) == min)
+			ft_reverse_rotate(stack_a, 'a');
 		while (min != (*stack_a)->content)
-		{
 			ft_rotate(stack_a, 'a');
-			cont++;
-		}
 		ft_pb(stack_a, stack_b);
-		cont++;
 		i++;
 	}
 	ft_sort_three(stack_a);
 	while (*stack_b)
-	{
 		ft_pa(stack_a, stack_b);
-		cont++;
-	}
-	// printf("El contador de movimentos es: %d\n", cont);
-}
-
-void	ft_sort_radix(Node **stack_a, Node **stack_b)
-{
-	// TODO: Desarrollar el algoritmo radix para el ordenamiento
-	return ;
 }

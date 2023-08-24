@@ -6,7 +6,7 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 13:37:35 by jakgonza          #+#    #+#              #
-#    Updated: 2023/08/21 16:35:33 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/08/24 13:41:55 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = 	main.c\
 		movements01.c\
 		movements02.c\
 		sort.c\
+		sort_radix.c\
 
 OBJS = $(SRCS:.c=.o)
 
