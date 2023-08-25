@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/24 13:39:41 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:41:32 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	*ft_fill_numbers(char **str, int *size)
 
 	i = 0;
 	numbers = (int *) malloc (ft_double_strlen(str) * sizeof(int));
+	if (!numbers)
+		return (NULL);
 	while (str[i])
 	{
 		numbers[i] = ft_atoi(str[i]);
@@ -71,6 +73,8 @@ char	**ft_return_data(int *array, int *cont)
 	i = 0;
 	len = *cont;
 	res = (char **) malloc ((len + 1) * sizeof(char *));
+	if (!res)
+		return (NULL);
 	while (i < len)
 	{
 		res[i] = ft_itoa(array[i]);
@@ -209,6 +213,27 @@ void	ft_print_stack(Node *stack)
 	}
 }
 
+void	ft_print_array(int *a)
+{
+	int i;
+
+	i = 0;
+	while (a[i])
+	{
+		printf("El array contiene: %d\n", a[i]);
+		i++;
+	}
+	printf("La cantidad de elementos en el array es de: %d\n", i);
+}
+
+int	ft_array_size(int *a)
+{
+	int i = 0;
+	while (a[i])
+		i++;
+	return (i);
+}
+
 int	ft_stack_sorted(Node *stack)
 {
 	Node	*curr;
@@ -226,8 +251,9 @@ int	ft_stack_sorted(Node *stack)
 void	ft_push_swap(Node **stack_a, Node **stack_b)
 {
 	int	size;
-	*stack_b = NULL;
+	int	*arr;
 
+	*stack_b = NULL;
 	size = ft_stack_size(*stack_a);
 	if (*stack_b == NULL && (ft_stack_sorted(*stack_a) || size <= 1))
 		return ;
@@ -239,6 +265,12 @@ void	ft_push_swap(Node **stack_a, Node **stack_b)
 		ft_sort_five(stack_a, stack_b);
 	else if (size > 5)
 	{
+		arr = ft_list_to_array(*stack_a);
+		printf("El size de arr es: %d\n", ft_array_size(arr));
+		ft_print_array(arr);
+		ft_sort_array(arr);
+		ft_stack_indexing(stack_a, arr);
+		free(arr);
 		ft_sort_radix(stack_a, stack_b);
 	}
 }
@@ -262,10 +294,10 @@ int	main(int argc, char const *argv[])
 	ft_fill_stack(&stack_a, numbers, cont);
 	// ft_print_stack(stack_a);
 	ft_push_swap(&stack_a, &stack_b);
-	// printf("STACK A - Final\n");
-	// ft_print_stack(stack_a);
-	// printf("STACK B - Final\n");
-	// ft_print_stack(stack_b);
+	printf("STACK A - Final\n");
+	ft_print_stack(stack_a);
+	printf("STACK B - Final\n");
+	ft_print_stack(stack_b);
 	ft_clear_stack(&stack_a);
 	ft_clear_stack(&stack_b);
 	// printf("Salida limpia!!\n");

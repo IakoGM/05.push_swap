@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:52:51 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/24 13:41:14 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:17:37 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	ft_error_free_dp(char **ptr);
 void	ft_error(void);
 int		ft_stack_sorted(Node *stack);
 void	ft_update(Node *head, int *s, int *m, int *e);
+int		ft_stack_size(Node *stack);
+int		*ft_list_to_array(Node *head);
+void	ft_sort_array(int *a);
+void	ft_stack_indexing(Node **stack_a, int *a);
+
 
 // ------- LISTAS ------- //
 void	ft_lstadd_front(Node **lst, Node *new);
@@ -59,5 +64,6 @@ void	ft_sort_radix(Node **stack_a, Node **stack_b);
 
 // ------- Funciones para eliminar ------- //
 void	ft_print_stack(Node *stack);
+int		ft_array_size(int *a);
 
 #endif

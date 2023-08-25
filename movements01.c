@@ -6,7 +6,7 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:25:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/23 17:15:48 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:11:22 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	ft_pb(Node **stack_a, Node **stack_b)
 	aux->next = NULL;
 	ft_lstadd_front(stack_b, aux);
 	write(1, "pb\n", 3);
-	// // Eliminar desde aqui hacia abajo
-	// printf("Stack A\n");
-	// ft_print_stack(*stack_a);
-	// printf("Stack B\n");
-	// ft_print_stack(*stack_b);
 }
 
 void	ft_pa(Node **stack_a, Node **stack_b)
@@ -37,11 +32,6 @@ void	ft_pa(Node **stack_a, Node **stack_b)
 	aux->next = NULL;
 	ft_lstadd_front(stack_a, aux);
 	write(1, "pa\n", 3);
-	// // Eliminar desde aqui hacia abajo
-	// printf("Stack A\n");
-	// ft_print_stack(*stack_a);
-	// printf("Stack B\n");
-	// ft_print_stack(*stack_b);
 }
 
 void	ft_swap(Node **head, char c)
