@@ -6,13 +6,13 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 12:20:27 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/25 12:40:34 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/26 08:53:44 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*ft_list_to_array(Node *head)
+int	*ft_list_to_array(Node *head, int *arr_size)
 {
 	Node	*aux;
 	int		size;
@@ -29,32 +29,23 @@ int	*ft_list_to_array(Node *head)
 	{
 		a[i] = aux->content;
 		aux = aux->next;
-		if (i == 495)
-		{
-			printf("Hola desde el 495\n");
-		}
 		i++;
 	}
-	printf("El size de arr es: %d\n", ft_array_size(a));
+	arr_size[0] = i;
 	return (a);	
 }
 
-void	ft_sort_array(int *a)
+void	ft_sort_array(int *a, int *arr_size)
 {
-	int	size;
 	int	i;
 	int	j;
 	int	tmp;
 
 	i = 0;
-	while (a[i])
-		i++;
-	size = i;
-	i = 0;
-	while (i < size - 1)
+	while (i < arr_size[0] - 1)
 	{
 		j = 0;
-		while (j < size - 1)
+		while (j < arr_size[0] - 1)
 		{
 			if (a[j] > a[j + 1])
 			{
@@ -68,13 +59,13 @@ void	ft_sort_array(int *a)
 	}
 }
 
-void	ft_stack_indexing(Node **stack_a, int *a)
+void	ft_stack_indexing(Node **stack_a, int *a, int *arr_size)
 {
 	Node	*aux;
 	int		i;
 
 	i = 0;
-	while (a[i])
+	while (i < arr_size[0])
 	{
 		aux = *stack_a;
 		while (aux)
