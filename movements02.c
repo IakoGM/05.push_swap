@@ -6,15 +6,15 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 14:41:56 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/23 17:32:20 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:07:41 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rotate(Node **head, char c)
+void	ft_rotate(t_node **head, char c)
 {
-	Node	*aux;
+	t_node	*aux;
 
 	aux = *head;
 	*head = (*head)->next;
@@ -26,17 +26,17 @@ void	ft_rotate(Node **head, char c)
 		write(1, "rb\n", 3);
 }
 
-void	ft_rotate_rr(Node **stack_a, Node **stack_b)
+void	ft_rotate_rr(t_node **stack_a, t_node **stack_b)
 {
 	ft_rotate(stack_a, 'x');
 	ft_rotate(stack_b, 'x');
 	write(1, "rr\n", 3);
 }
 
-void	ft_reverse_rotate(Node **head, char c)
+void	ft_reverse_rotate(t_node **head, char c)
 {
-	Node	*curr;
-	Node	*aux;
+	t_node	*curr;
+	t_node	*aux;
 
 	curr = *head;
 	while (curr->next->next)
@@ -50,7 +50,7 @@ void	ft_reverse_rotate(Node **head, char c)
 		write(1, "rrb\n", 4);
 }
 
-void	ft_reverse_rotate_rrr(Node **stack_a, Node **stack_b)
+void	ft_reverse_rotate_rrr(t_node **stack_a, t_node **stack_b)
 {
 	ft_reverse_rotate(stack_a, 'x');
 	ft_reverse_rotate(stack_b, 'x');

@@ -6,15 +6,15 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:25:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/24 21:11:22 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:07:34 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_pb(Node **stack_a, Node **stack_b)
+void	ft_pb(t_node **stack_a, t_node **stack_b)
 {
-	Node	*aux;
+	t_node	*aux;
 
 	aux = *stack_a;
 	*stack_a = (*stack_a)->next;
@@ -23,9 +23,9 @@ void	ft_pb(Node **stack_a, Node **stack_b)
 	write(1, "pb\n", 3);
 }
 
-void	ft_pa(Node **stack_a, Node **stack_b)
+void	ft_pa(t_node **stack_a, t_node **stack_b)
 {
-	Node	*aux;
+	t_node	*aux;
 
 	aux = *stack_b;
 	*stack_b = (*stack_b)->next;
@@ -34,10 +34,10 @@ void	ft_pa(Node **stack_a, Node **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void	ft_swap(Node **head, char c)
+void	ft_swap(t_node **head, char c)
 {
-	Node	*aux1;
-	Node	*aux2;
+	t_node	*aux1;
+	t_node	*aux2;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
@@ -52,7 +52,7 @@ void	ft_swap(Node **head, char c)
 		write(1, "sb\n", 3);
 }
 
-void	ft_swap_ss(Node **stack_a, Node **stack_b)
+void	ft_swap_ss(t_node **stack_a, t_node **stack_b)
 {
 	ft_swap(stack_a, 'x');
 	ft_swap(stack_b, 'x');

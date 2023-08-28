@@ -6,20 +6,22 @@
 #    By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 13:37:35 by jakgonza          #+#    #+#              #
-#    Updated: 2023/08/24 13:41:55 by jakgonza         ###   ########.fr        #
+#    Updated: 2023/08/28 09:58:37 by jakgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRCS = 	main.c\
-		ft_free.c\
 		ft_error.c\
 		lists.c\
 		movements01.c\
 		movements02.c\
 		sort.c\
 		sort_radix.c\
+		push_swap.c\
+		checkdata.c\
+		checkdata_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

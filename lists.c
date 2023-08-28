@@ -6,17 +6,17 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 15:03:37 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/21 12:27:40 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:06:41 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-Node	*ft_lstnew(int *content)
+t_node	*ft_lstnew(int *content)
 {
-	Node	*new;
+	t_node	*new;
 
-	new = (Node *) malloc (sizeof(Node));
+	new = (t_node *) malloc (sizeof(t_node));
 	if (!new)
 		return (NULL);
 	new->index = 0;
@@ -25,9 +25,9 @@ Node	*ft_lstnew(int *content)
 	return (new);
 }
 
-void	ft_lstadd_back(Node **head, Node *new)
+void	ft_lstadd_back(t_node **head, t_node *new)
 {
-	Node	*curr;
+	t_node	*curr;
 
 	if (*head == NULL)
 		*head = new;
@@ -40,7 +40,7 @@ void	ft_lstadd_back(Node **head, Node *new)
 	}
 }
 
-void	ft_lstadd_front(Node **head, Node *new)
+void	ft_lstadd_front(t_node **head, t_node *new)
 {
 	if (*head == NULL)
 		*head = new;
@@ -51,11 +51,11 @@ void	ft_lstadd_front(Node **head, Node *new)
 	}
 }
 
-void	ft_clear_stack(Node **head)
+void	ft_clear_stack(t_node **head)
 {
-	Node	*curr;
-	Node	*aux;
-	
+	t_node	*curr;
+	t_node	*aux;
+
 	if (*head == NULL)
 		return ;
 	curr = *head;
@@ -68,9 +68,9 @@ void	ft_clear_stack(Node **head)
 	*head = NULL;
 }
 
-int	ft_stack_size(Node *stack)
+int	ft_stack_size(t_node *stack)
 {
-	Node	*curr;
+	t_node	*curr;
 	int		cont;
 
 	cont = 0;

@@ -6,154 +6,11 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 17:01:59 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/26 10:04:36 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:06:58 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_double_strlen(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	**ft_insert_data(char const **argv)
-{
-	char	**str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	str = NULL;
-	while (argv[i])
-		i++;
-	str = (char **) malloc (i * sizeof(char *));
-	if (!str)
-		return (NULL);
-	i--;
-	while (i > j)
-	{
-		str[j] = ft_strdup(argv[j + 1]);
-		j++;
-	}
-	str[j] = NULL;
-	return (str);
-}
-
-int	*ft_fill_numbers(char **str, int *size)
-{
-	int	*numbers;
-	int	i;
-
-	i = 0;
-	numbers = (int *) malloc (ft_double_strlen(str) * sizeof(int));
-	if (!numbers)
-		return (NULL);
-	while (str[i])
-	{
-		numbers[i] = ft_atoi(str[i]);
-		i++;
-	}
-	*size = i;
-	return (numbers);
-}
-
-char	**ft_return_data(int *array, int *cont)
-{
-	char	**res;
-	int		len;
-	int		i;
-
-	i = 0;
-	len = *cont;
-	res = (char **) malloc ((len + 1) * sizeof(char *));
-	if (!res)
-		return (NULL);
-	while (i < len)
-	{
-		res[i] = ft_itoa(array[i]);
-		i++;
-	}
-	res[i] = NULL;
-	return (res);
-}
-
-int	ft_compare(char **str, char **nums_str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (str[i] && nums_str[i])
-	{
-		j = 0;
-		while (str[i][j] || nums_str[i][j])
-		{
-			if ((str[i][j] != nums_str[i][j]) \
-				|| (!str[i][j] && nums_str[i][j]) \
-					|| (!nums_str[i][j] && str[i][j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	ft_check_duplicates(int *numbers, int *cont)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < *cont)
-	{
-		j = i + 1;
-		while (j < *cont)
-		{
-			if (numbers[i] == numbers[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	*ft_checkdata(int argc, char const **argv, int *cont, int *numbers)
-{
-	char	**str;
-	char	**nums_str;
-
-	str = NULL;
-	nums_str = NULL;
-	if (argc == 2)
-		str = ft_split(argv[1], 32);
-	else
-		str = ft_insert_data(argv);
-	numbers = ft_fill_numbers(str, cont);
-	nums_str = ft_return_data(numbers, cont);
-	if (ft_compare(str, nums_str))
-	{
-		if (!ft_check_duplicates(numbers, cont))
-		{
-			ft_free(str);
-			ft_free(nums_str);
-			return (numbers);
-		}
-	}
-	ft_free(nums_str);
-	free(numbers);
-	printf("Hay duplicados\n");
-	ft_error_free_dp(str);
-	return (numbers);
-}
 
 static int	ft_check_empty(char const **argv)
 {
@@ -187,10 +44,10 @@ static int	ft_only_spaces(char const **argv)
 	return (0);
 }
 
-void	ft_fill_stack(Node **stack_a, int *numbers, int *cont)
+static void	ft_fill_stack(t_node **stack_a, int *numbers, int *cont)
 {
 	int		i;
-	Node	*aux;
+	t_node	*aux;
 
 	i = 0;
 	while (i < *cont)
@@ -202,77 +59,10 @@ void	ft_fill_stack(Node **stack_a, int *numbers, int *cont)
 	free(numbers);
 }
 
-void	ft_print_stack(Node *stack)
-{
-	Node	*curr;
-	
-	curr = stack;
-	while (curr)
-	{
-		printf("El contenido del stack es: %d\n", curr->content);
-		curr = curr->next;
-	}
-}
-
-void	ft_print_array(int *a, int *arr_size)
-{
-	int i;
-
-	i = 0;
-	while (i < arr_size[0])
-	{
-		printf("El array contiene: %d\n", a[i]);
-		i++;
-	}
-	printf("La cantidad de elementos en el array es de: %d\n", i);
-}
-
-int	ft_stack_sorted(Node *stack)
-{
-	Node	*curr;
-
-	curr = stack;
-	while (curr->next)
-	{
-		if (curr->content > curr->next->content)
-			return (0);
-		curr = curr->next;
-	}
-	return (1);
-}
-
-void	ft_push_swap(Node **stack_a, Node **stack_b)
-{
-	int	size;
-	int	*arr;
-	int	*arr_size;
-
-	*stack_b = NULL;
-	size = ft_stack_size(*stack_a);
-	if (*stack_b == NULL && (ft_stack_sorted(*stack_a) || size <= 1))
-		return ;
-	if (size == 2 && *stack_a > (*stack_a)->next)
-			ft_swap(stack_a, 'a');
-	else if (size == 3)
-		ft_sort_three(stack_a);
-	else if (size <= 5)
-		ft_sort_five(stack_a, stack_b);
-	else if (size > 5)
-	{
-		arr_size = (int *) malloc (1 * sizeof(int));
-		arr = ft_list_to_array(*stack_a, arr_size);
-		ft_sort_array(arr, arr_size);
-		ft_stack_indexing(stack_a, arr, arr_size);
-		free(arr);
-		free(arr_size);
-		ft_sort_radix(stack_a, stack_b);
-	}
-}
-
 int	main(int argc, char const *argv[])
 {
-	Node	*stack_a;
-	Node	*stack_b;
+	t_node	*stack_a;
+	t_node	*stack_b;
 	int		*numbers;
 	int		cont[1];
 
@@ -286,14 +76,8 @@ int	main(int argc, char const *argv[])
 		ft_error();
 	numbers = ft_checkdata(argc, argv, cont, numbers);
 	ft_fill_stack(&stack_a, numbers, cont);
-	// ft_print_stack(stack_a);
 	ft_push_swap(&stack_a, &stack_b);
-	// printf("STACK A - Final\n");
-	// ft_print_stack(stack_a);
-	// printf("STACK B - Final\n");
-	// ft_print_stack(stack_b);
 	ft_clear_stack(&stack_a);
 	ft_clear_stack(&stack_b);
-	// printf("Salida limpia!!\n");
 	return (0);
 }

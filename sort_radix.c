@@ -6,79 +6,27 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 12:20:27 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/26 08:53:44 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:08:20 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*ft_list_to_array(Node *head, int *arr_size)
+int	ft_stack_sorted(t_node *stack)
 {
-	Node	*aux;
-	int		size;
-	int		*a;
-	int		i;
+	t_node	*curr;
 
-	aux = head;
-	i = 0;
-	size = ft_stack_size(head);
-	a = (int *) malloc (size * sizeof(int));
-	if (!a)
-		return (NULL);
-	while (aux)
+	curr = stack;
+	while (curr->next)
 	{
-		a[i] = aux->content;
-		aux = aux->next;
-		i++;
+		if (curr->content > curr->next->content)
+			return (0);
+		curr = curr->next;
 	}
-	arr_size[0] = i;
-	return (a);	
+	return (1);
 }
 
-void	ft_sort_array(int *a, int *arr_size)
-{
-	int	i;
-	int	j;
-	int	tmp;
-
-	i = 0;
-	while (i < arr_size[0] - 1)
-	{
-		j = 0;
-		while (j < arr_size[0] - 1)
-		{
-			if (a[j] > a[j + 1])
-			{
-				tmp = a[j + 1];
-				a[j + 1] = a[j];
-				a[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	ft_stack_indexing(Node **stack_a, int *a, int *arr_size)
-{
-	Node	*aux;
-	int		i;
-
-	i = 0;
-	while (i < arr_size[0])
-	{
-		aux = *stack_a;
-		while (aux)
-		{
-			if (aux->content == a[i])
-				aux->index = i;
-			aux = aux->next;
-		}
-		i++;
-	}
-}
-
-int	ft_binary_digits(int num)
+static int	ft_binary_digits(int num)
 {
 	int	cont;
 
@@ -93,9 +41,9 @@ int	ft_binary_digits(int num)
 	return (cont);
 }
 
-int	ft_max_digits(Node *head)
+static int	ft_max_digits(t_node *head)
 {
-	Node	*aux;
+	t_node	*aux;
 	int		max;
 
 	aux = head;
@@ -109,9 +57,9 @@ int	ft_max_digits(Node *head)
 	return (max);
 }
 
-void	ft_sort_radix(Node **stack_a, Node **stack_b)
+void	ft_sort_radix(t_node **stack_a, t_node **stack_b)
 {
-	Node	*aux;
+	t_node	*aux;
 	int		size;
 	int		i;
 	int		max;
@@ -132,7 +80,7 @@ void	ft_sort_radix(Node **stack_a, Node **stack_b)
 		}
 		while (ft_stack_size(*stack_b) != 0)
 			ft_pa(stack_a, stack_b);
-		if(ft_stack_sorted(*stack_a) && ft_stack_size(*stack_b) == 0)
+		if (ft_stack_sorted(*stack_a) && ft_stack_size(*stack_b) == 0)
 			break ;
 		i++;
 	}

@@ -6,11 +6,26 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 19:38:27 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/10 12:49:59 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 09:20:19 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_free(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	if (!ptr)
+		return ;
+	while (ptr[i])
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
+}
 
 void	ft_error_free_dp(char **ptr)
 {

@@ -6,24 +6,24 @@
 /*   By: jakgonza <jakgonza@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 16:35:17 by jakgonza          #+#    #+#             */
-/*   Updated: 2023/08/24 12:20:02 by jakgonza         ###   ########.fr       */
+/*   Updated: 2023/08/28 10:08:25 by jakgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_update(Node *head, int *s, int *m, int *e)
+static void	ft_update(t_node *head, int *s, int *m, int *e)
 {
 	*s = head->content;
 	*m = head->next->content;
 	*e = head->next->next->content;
 }
 
-int	ft_find_min(Node *head)
+static int	ft_find_min(t_node *head)
 {
-	Node	*curr;
+	t_node	*curr;
 	int		min;
-	
+
 	curr = head;
 	min = curr->content;
 	while (curr)
@@ -35,10 +35,10 @@ int	ft_find_min(Node *head)
 	return (min);
 }
 
-int	ft_find_last(Node *head)
+static int	ft_find_last(t_node *head)
 {
 	int		num;
-	Node	*aux;
+	t_node	*aux;
 
 	aux = head;
 	while (aux->next)
@@ -47,7 +47,7 @@ int	ft_find_last(Node *head)
 	return (num);
 }
 
-void	ft_sort_three(Node **head)
+void	ft_sort_three(t_node **head)
 {
 	int	start;
 	int	middle;
@@ -74,7 +74,7 @@ void	ft_sort_three(Node **head)
 	}
 }
 
-void	ft_sort_five(Node **stack_a, Node **stack_b)
+void	ft_sort_five(t_node **stack_a, t_node **stack_b)
 {
 	int	size;
 	int	min;
